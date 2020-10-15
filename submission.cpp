@@ -142,7 +142,7 @@ int main(int argc, char *argv[]) {
 				if(heap.size()>1) {
 				for(int q = 0; q< heap.size(); q++) {
 					for(int a = 0; a<heap.size(); a++){
-						if(heap[a]<heap[q]) {
+						if(heap[a]>heap[q]) {
 							int temp = heap[q];
 							heap[q] = heap[a];
 							heap[a] = temp;
@@ -154,14 +154,14 @@ int main(int argc, char *argv[]) {
 					}
 				}
 			}
-				string id = trace[trace.size()-1];
-				int score = heap[heap.size()-1];
+				string id = trace[0];
+				int score = heap[0];
 				int x = stoi(id.substr(1, id.length()-2));
 				handle[x] = -1;
 				handlePoints[x] = -1;
 				output << "Contestant " << id << " with current lowest score <" << score << "> eliminated.\n";
-				trace.pop_back();
-				heap.pop_back();
+				trace.erase(trace.begin());
+				heap.erase(heap.begin());
 			}
 	      }
 	      else if(operation=="earnPoints") {
@@ -184,7 +184,7 @@ int main(int argc, char *argv[]) {
 								if(heap.size()>1) {
 				for(int q = 0; q< heap.size(); q++) {
 					for(int a = 0; a<heap.size(); a++){
-						if(heap[a]<heap[q]) {
+						if(heap[a]>heap[q]) {
 							int temp = heap[q];
 							heap[q] = heap[a];
 							heap[a] = temp;
@@ -223,7 +223,7 @@ int main(int argc, char *argv[]) {
 								if(heap.size()>1) {
 				for(int q = 0; q< heap.size(); q++) {
 					for(int a = 0; a<heap.size(); a++){
-						if(heap[a]<heap[q]) {
+						if(heap[a]>heap[q]) {
 							int temp = heap[q];
 							heap[q] = heap[a];
 							heap[a] = temp;
