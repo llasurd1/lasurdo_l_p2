@@ -128,8 +128,23 @@ int main(int argc, char *argv[]) {
 			handlePoints[x] = y;
  			heap.push_back(y);
 			trace.push_back(id);
-			int n = heap.size();
-			heapSort(heap, trace, n); 
+			//int n = heap.size();
+			//heapSort(heap, trace, n); 
+			if(heap.size()>1) {
+				for(int q = 0; q< heap.size(); q++) {
+					for(int a = 0; a<heap.size(); a++){
+						if(heap[a]>heap[q]) {
+							int temp = heap[q];
+							heap[q] = heap[a];
+							heap[a] = temp;
+							
+							string stemp = trace[q];
+							trace[q] = trace[a];
+							trace[a] = stemp;
+						}
+					}
+				}
+			}
         		output << "Contestant " << id << " inserted with initial score " << score << ".\n";
      		 }
 	      else if(operation=="eliminateWeakest") {
@@ -163,8 +178,23 @@ int main(int argc, char *argv[]) {
 					int temp = x + heap[i];
 					heap[i] = temp;
 					output << "Contestant " << id << "'s score was increased by " << points << " points to <" << temp << ">.\n";
-					int n = heap.size();
-					heapSort(heap, trace, n); 
+					//int n = heap.size();
+					//heapSort(heap, trace, n); 
+								if(heap.size()>1) {
+				for(int q = 0; q< heap.size(); q++) {
+					for(int a = 0; a<heap.size(); a++){
+						if(heap[a]>heap[q]) {
+							int temp = heap[q];
+							heap[q] = heap[a];
+							heap[a] = temp;
+							
+							string stemp = trace[q];
+							trace[q] = trace[a];
+							trace[a] = stemp;
+						}
+					}
+				}
+			}
 				}
 			 }
 		      
@@ -187,8 +217,23 @@ int main(int argc, char *argv[]) {
 					int temp = heap[i] - x;
 					heap[i] = temp;
 					output << "Contestant " << id << "'s score was decreased by " << points << " points to <" << temp << ">.\n";
-					int n = heap.size();
-					heapSort(heap, trace, n); 
+					//int n = heap.size();
+					//heapSort(heap, trace, n); 
+								if(heap.size()>1) {
+				for(int q = 0; q< heap.size(); q++) {
+					for(int a = 0; a<heap.size(); a++){
+						if(heap[a]>heap[q]) {
+							int temp = heap[q];
+							heap[q] = heap[a];
+							heap[a] = temp;
+							
+							string stemp = trace[q];
+							trace[q] = trace[a];
+							trace[a] = stemp;
+						}
+					}
+				}
+			}
 				}
 			 }
 		      if(exists==false) {
@@ -241,7 +286,7 @@ int main(int argc, char *argv[]) {
 		      for(int i = heap.size()-1; i>0; i--){
 				heap.pop_back();      
 		      }
-		      output << "Contestant" << trace[0]  << "wins with score " << heap[0] <<"!\n";
+		      output << "Contestant " << trace[0]  << " wins with score " << heap[0] <<"!\n";
 	      }
 	}
 	file.close();
