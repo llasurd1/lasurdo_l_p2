@@ -241,7 +241,7 @@ int main(int argc, char *argv[]) {
 		      for(int i = heap.size()-1; i>0; i--){
 				heap.pop_back();      
 		      }
-		      output << "Contestant << "trace[0] " << wins with score " << heap[0] <<"!\n";
+		      output << "Contestant" << trace[0] " << wins with score " << heap[0] <<"!\n";
 	      }
 	}
 	file.close();
