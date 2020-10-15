@@ -130,7 +130,16 @@ int main(int argc, char *argv[]) {
 			trace.push_back(id);
 			//int n = heap.size();
 			//heapSort(heap, trace, n); 
-			if(heap.size()>1) {
+			
+        		output << "Contestant " << id << " inserted with initial score " << score << ".\n";
+     		 }
+	      else if(operation=="eliminateWeakest") {
+			output << "eliminateWeakest\n";
+			if(heap.size()==0) {
+				output << "No contestant can be eliminated since the extended heap is empty.\n";
+			}
+			else {
+				if(heap.size()>1) {
 				for(int q = 0; q< heap.size(); q++) {
 					for(int a = 0; a<heap.size(); a++){
 						if(heap[a]<heap[q]) {
@@ -145,14 +154,6 @@ int main(int argc, char *argv[]) {
 					}
 				}
 			}
-        		output << "Contestant " << id << " inserted with initial score " << score << ".\n";
-     		 }
-	      else if(operation=="eliminateWeakest") {
-			output << "eliminateWeakest\n";
-			if(heap.size()==0) {
-				output << "No contestant can be eliminated since the extended heap is empty.\n";
-			}
-			else {
 				string id = trace[trace.size()-1];
 				int score = heap[heap.size()-1];
 				int x = stoi(id.substr(1, id.length()-2));
