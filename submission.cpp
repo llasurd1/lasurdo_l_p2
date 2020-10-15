@@ -33,7 +33,8 @@ int main(int argc, char *argv[]) {
      		 if(operation=="findContestant") { 
       			 string id;
       			 file >> id;
-			 int x = atoi(id.substr(1, id.length()-2));
+			 string p = id.substr(1, id.length()-2);
+			 int x = stoi(p);
 			 output << "findContestant " << id << "\n"; 
 			 if(handle[x]==x) {
 				 output << "Contestant " << id << " is in the extended heap with score <" << handlePoints[x] << ">.\n";
@@ -58,9 +59,10 @@ int main(int argc, char *argv[]) {
 			file >> id;
 			file >> score;
 			output << "insertContestant " << id << " " << score << "\n";
-			int x = atoi(id.substr(1, id.length()-2));
-			int y = atoi(id.substr(1, score.length()-2));;
+			int x = stoi(id.substr(1, id.length()-2));
+			int y = stoi(score.substr(1, score.length()-2));;
 			handle[x] = x;
+			handlePoints[x] = y;
  			heap.push_back(y);
 			trace.push_back(id);
         		output << "Contestant " << id << " inserted with initial score " << score << ".\n";
@@ -73,10 +75,10 @@ int main(int argc, char *argv[]) {
 			else {
 				string id = trace[trace.size()-1];
 				int score = heap[heap.size()-1];
-				int x = atoi(id.substr(1, id.length()-2));
+				int x = stoi(id.substr(1, id.length()-2));
 				handle[x] = -1;
 				handlePoints[x] = -1;
-				output << "Contestant " << id << " with current lowest score " << score << "eliminated.\n";
+				output << "Contestant " << id << " with current lowest score <" << score << "> eliminated.\n";
 				trace.pop_back();
 				heap.pop_back();
 			}
@@ -86,8 +88,8 @@ int main(int argc, char *argv[]) {
 			file >> id;
 			file >> points;
 			output << "earnPoints " << id << " " << points<< "\n"; 
-			int x = atoi(id.substr(1, points.length()-2));
-			int y = atoi(id.substr(1, id.length()-2));
+			int x = stoi(points.substr(1, points.length()-2));
+			int y = stoi(id.substr(1, id.length()-2));
 		      	handlePoints[y] += x;
 		        bool exists = false;
 		      	for(int i = 0; i<trace.size(); i++) {
@@ -95,7 +97,7 @@ int main(int argc, char *argv[]) {
 					exists = true;
 					int temp = x + heap[i];
 					heap[i] = temp;
-					output << "Contestant " << id << "'s score was increased by " << points << "points to <" << temp << ">.\n";
+					output << "Contestant " << id << "'s score was increased by " << points << " points to <" << temp << ">.\n";
 					
 				}
 			 }
@@ -107,9 +109,9 @@ int main(int argc, char *argv[]) {
 			string id, points;
 			file >> id;
 			file >> points;
-			output << "earnPoints " << id << " " << points << "\n"; 
-		      int x = atoi(id.substr(1, points.length()-2));
-		      int y = atoi(id.substr(1, id.length()-2));
+			output << "losePoints " << id << " " << points << "\n"; 
+		      int x = stoi(points.substr(1, points.length()-2));
+		      int y = stoi(id.substr(1, id.length()-2));
 		      handlePoints[y] -= x;
 		        bool exists = false;
 		      	for(int i = 0; i<trace.size(); i++) {
@@ -117,7 +119,7 @@ int main(int argc, char *argv[]) {
 					exists = true;
 					int temp = heap[i] - x;
 					heap[i] = temp;
-					output << "Contestant " << id << "'s score was decreased by " << points << "points to <" << temp << ">.\n";
+					output << "Contestant " << id << "'s score was decreased by " << points << " points to <" << temp << ">.\n";
 					
 				}
 			 }
@@ -128,7 +130,7 @@ int main(int argc, char *argv[]) {
 	      else if(operation=="showContestants") {
 			output << "showContestants\n";
 			 for(int i = 0; i<trace.size(); i++) {
-				output << "Contestant <" << trace[i] << "> in extended heap location <"<< i+1 << "> with score <" << heap[i] << ">.\n";
+				output << "Contestant " << trace[i] << " in extended heap location <"<< i+1 << "> with score <" << heap[i] << ">.\n";
 			 }	      
 	      }
 
@@ -136,13 +138,13 @@ int main(int argc, char *argv[]) {
 		output << "showHandles\n";
 		for(int i = 1; i<maxSize+1; i++) {
 				if(handle[i]==-1) {
-				  output << "There is no Contestant <" << i << "> in the extended heap: handle["<< i+1 << "] = -1.\n";
+				  output << "There is no Contestant <" << i << "> in the extended heap: handle["<< i << "] = -1.\n";
 				}
 			      	else {
-				 for(int i = 0; i<trace.size(); i++) {
-				   int w = trace[i][1];
-					if(w==i) {
-						output << "Contestant <" << i << "> stored in extended heap location <" << i+1 << ">.\n";
+				 for(int j = 0; j<trace.size(); j++) {
+				   int w = stoi(trace[j].substr(1, trace[j].length()-2));
+					if(w==handle[i]) {
+						output << "Contestant <" << i << "> stored in extended heap location <" << j+1 << ">.\n";
 					}
 				 }
 			}
@@ -151,7 +153,7 @@ int main(int argc, char *argv[]) {
 	      else if(operation=="showLocation") {
 			string id;
 			file >> id;
-			int x = atoi(id.substr(1, id.length()-2));
+			int x = stoi(id.substr(1, id.length()-2));
 			output << "showLocation " << id << "\n";
 		        if(handle[x]==-1) {
 				output << "There is no Contestant " << id << " in the extended heap: handle["<< id << "] = -1.\n";
