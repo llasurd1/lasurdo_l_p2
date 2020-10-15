@@ -284,7 +284,7 @@ int main(int argc, char *argv[]) {
 	      else if(operation=="crownWinner") {
 			output << "crownWinner\n";
 			string id, points;
-		      for(int i = 0; i<heap.size()-1; i++){
+		      for(int i = 0; i<heap.size(); i++){
 				heap.erase(heap.begin());  
 			        trace.erase(trace.begin()); 
 		      }
