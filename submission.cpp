@@ -133,7 +133,7 @@ int main(int argc, char *argv[]) {
 			if(heap.size()>1) {
 				for(int q = 0; q< heap.size(); q++) {
 					for(int a = 0; a<heap.size(); a++){
-						if(heap[a]>heap[q]) {
+						if(heap[a]<heap[q]) {
 							int temp = heap[q];
 							heap[q] = heap[a];
 							heap[a] = temp;
@@ -183,7 +183,7 @@ int main(int argc, char *argv[]) {
 								if(heap.size()>1) {
 				for(int q = 0; q< heap.size(); q++) {
 					for(int a = 0; a<heap.size(); a++){
-						if(heap[a]>heap[q]) {
+						if(heap[a]<heap[q]) {
 							int temp = heap[q];
 							heap[q] = heap[a];
 							heap[a] = temp;
@@ -222,7 +222,7 @@ int main(int argc, char *argv[]) {
 								if(heap.size()>1) {
 				for(int q = 0; q< heap.size(); q++) {
 					for(int a = 0; a<heap.size(); a++){
-						if(heap[a]>heap[q]) {
+						if(heap[a]<heap[q]) {
 							int temp = heap[q];
 							heap[q] = heap[a];
 							heap[a] = temp;
@@ -237,7 +237,7 @@ int main(int argc, char *argv[]) {
 				}
 			 }
 		      if(exists==false) {
-			      output << "Contestant " << id << "is not in the extended heap.\n";
+			      output << "Contestant " << id << " is not in the extended heap.\n";
 		      }
 	      }
 	      else if(operation=="showContestants") {
