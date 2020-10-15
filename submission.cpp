@@ -38,11 +38,11 @@ void heapify(vector<int> heap, vector<string> trace, int n, int i)
 	    
         //swap(arr[i], arr[largest]);
         // Recursively heapify the affected sub-tree 
-        heapify(heap, trace n, largest); 
+        heapify(heap, trace, n, largest); 
     } 
 } 
 
-void heapSort(vector<int> heap, int n) 
+void heapSort(vector<int> heap, vector<string> trace, int n) 
 { 
     // Build heap (rearrange array) 
     for (int i = n / 2 - 1; i >= 0; i--) 
@@ -241,7 +241,7 @@ int main(int argc, char *argv[]) {
 		      for(int i = heap.size()-1; i>0; i--){
 				heap.pop_back();      
 		      }
-		      output << "Contestant" << trace[0] " << wins with score " << heap[0] <<"!\n";
+		      output << "Contestant" << trace[0]  << "wins with score " << heap[0] <<"!\n";
 	      }
 	}
 	file.close();
