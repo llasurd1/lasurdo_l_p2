@@ -59,7 +59,7 @@ void heapSort(vector<int> heap, vector<string> trace, int n)
 	    
 	string stemp = trace[0];
 	trace[0] = trace[i];
-	trace[i] = trace;
+	trace[i] = stemp;
         // call max heapify on the reduced heap 
         heapify(heap, trace, i, 0); 
     } 
