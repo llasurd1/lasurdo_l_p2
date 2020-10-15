@@ -6,5 +6,3 @@ p1: submission.cpp
 clean:
 	rm -rf submission
 
-run:
-  ./submission input.txt output.txt
