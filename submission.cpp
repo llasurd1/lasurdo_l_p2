@@ -10,7 +10,7 @@
 using namespace std;
 // To heapify a subtree rooted with node i which is 
 // an index in arr[]. n is size of heap 
-void heapify(vector<int> heap, vector<int> trace, int n, int i) 
+void heapify(vector<int> heap, vector<string> trace, int n, int i) 
 { 
     int largest = i; // Initialize largest as root 
     int l = 2*i + 1; // left = 2*i + 1 
@@ -38,7 +38,7 @@ void heapify(vector<int> heap, vector<int> trace, int n, int i)
 	    
         //swap(arr[i], arr[largest]);
         // Recursively heapify the affected sub-tree 
-        heapify(heap, n, largest); 
+        heapify(heap, trace n, largest); 
     } 
 } 
 
@@ -57,7 +57,7 @@ void heapSort(vector<int> heap, int n)
 	heap[0] = heap[i];
 	heap[i] = temp;
 	    
-	int stemp = trace[0];
+	string stemp = trace[0];
 	trace[0] = trace[i];
 	trace[i] = trace;
         // call max heapify on the reduced heap 
