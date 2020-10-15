@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
      		 if(operation=="findContestant") { 
       			 string id;
       			 file >> id;
-			 int x = id[1] -48;
+			 int x = atoi(id.substr(1, id.length()-2));
 			 output << "findContestant " << id << "\n"; 
 			 if(handle[x]==x) {
 				 output << "Contestant " << id << " is in the extended heap with score <" << handlePoints[x] << ">.\n";
@@ -58,8 +58,9 @@ int main(int argc, char *argv[]) {
 			file >> id;
 			file >> score;
 			output << "insertContestant " << id << " " << score << "\n";
-			int x = id[1] - 48;
-			int y = score[1] - 48;
+			int x = atoi(id.substr(1, id.length()-2));
+			int y = atoi(id.substr(1, score.length()-2));;
+			handle[x] = x;
  			heap.push_back(y);
 			trace.push_back(id);
         		output << "Contestant " << id << " inserted with initial score " << score << ".\n";
@@ -72,7 +73,7 @@ int main(int argc, char *argv[]) {
 			else {
 				string id = trace[trace.size()-1];
 				int score = heap[heap.size()-1];
-				int x = id[1] - 48;
+				int x = atoi(id.substr(1, id.length()-2));
 				handle[x] = -1;
 				handlePoints[x] = -1;
 				output << "Contestant " << id << " with current lowest score " << score << "eliminated.\n";
@@ -85,8 +86,8 @@ int main(int argc, char *argv[]) {
 			file >> id;
 			file >> points;
 			output << "earnPoints " << id << " " << points<< "\n"; 
-			int x = points[1] - 48;
-			int y = id[1]- 48;
+			int x = atoi(id.substr(1, points.length()-2));
+			int y = atoi(id.substr(1, id.length()-2));
 		      	handlePoints[y] += x;
 		        bool exists = false;
 		      	for(int i = 0; i<trace.size(); i++) {
@@ -107,8 +108,8 @@ int main(int argc, char *argv[]) {
 			file >> id;
 			file >> points;
 			output << "earnPoints " << id << " " << points << "\n"; 
-		      int x = points[1]- 48;
-		      int y = id[1] - 48;
+		      int x = atoi(id.substr(1, points.length()-2));
+		      int y = atoi(id.substr(1, id.length()-2));
 		      handlePoints[y] -= x;
 		        bool exists = false;
 		      	for(int i = 0; i<trace.size(); i++) {
@@ -150,7 +151,7 @@ int main(int argc, char *argv[]) {
 	      else if(operation=="showLocation") {
 			string id;
 			file >> id;
-			int x = id[1] - 48;
+			int x = atoi(id.substr(1, id.length()-2));
 			output << "showLocation " << id << "\n";
 		        if(handle[x]==-1) {
 				output << "There is no Contestant " << id << " in the extended heap: handle["<< id << "] = -1.\n";
